@@ -6,7 +6,7 @@
 
     <groupId>dev.drawethree.xprison</groupId>
     <artifactId>X-Prison</artifactId>
-    <version>1.12.15</version>
+    <version>1.12.16</version>
 
     <name>XPrison Reloaded</name>
 
@@ -23,7 +23,6 @@
                 <configuration>
                     <source>21</source>
                     <target>21</target>
-
                     <release>11</release>
                 </configuration>
             </plugin>
