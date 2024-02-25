@@ -37,7 +37,7 @@ import me.lucko.helper.Commands;
 import me.lucko.helper.Events;
 import me.lucko.helper.plugin.ExtendedJavaPlugin;
 import net.milkbowl.vault.economy.Economy;
-//import org.bstats.bukkit.Metrics;
+import dev.drawethree.xprison.utils.Metrics;
 import org.bukkit.Bukkit;
 import org.bukkit.Material;
 import org.bukkit.entity.Player;
@@ -100,8 +100,8 @@ public final class XPrison extends ExtendedJavaPlugin {
 
 		// All you have to do is adding the following two lines in your onEnable method.
 		// You can find the plugin ids of your plugins on the page https://bstats.org/what-is-my-plugin-id
-//		int pluginId = 10520; // <-- Replace with the id of your plugin!
-//		Metrics metrics = new Metrics(this, pluginId);
+		int pluginId = 10520; // <-- Replace with the id of your plugin!
+		Metrics metrics = new Metrics(this, pluginId);
 
 		if (!this.initDatabase()) {
 			this.getServer().getPluginManager().disablePlugin(this);
@@ -129,7 +129,7 @@ public final class XPrison extends ExtendedJavaPlugin {
 
 		this.registerMainEvents();
 		this.registerMainCommand();
-		//this.startMetrics();
+		this.startMetrics();
 
 		SkullUtils.init();
 	}
@@ -275,9 +275,9 @@ public final class XPrison extends ExtendedJavaPlugin {
 				}).bindWith(this);
 	}
 
-	/*private void startMetrics() {
+	private void startMetrics() {
 		new Metrics(this, Constants.METRICS_SERVICE_ID);
-	}*/
+	}
 
 	private void loadModule(XPrisonModule module) {
 		if (module.isEnabled()) {

@@ -6,36 +6,16 @@
 
     <groupId>dev.drawethree.xprison</groupId>
     <artifactId>X-Prison</artifactId>
-    <version>1.12.14</version>
+    <version>1.12.15</version>
 
-    <name>XPrison</name>
+    <name>XPrison Reloaded</name>
 
     <build>
         <defaultGoal>clean install</defaultGoal>
         <finalName>XPrison-${project.version}</finalName>
 
         <plugins>
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-shade-plugin</artifactId>
-                <version>3.1.0</version>
-                <configuration>
-                    <relocations>
-                        <relocation>
-                            <pattern>org.bstats</pattern>
-                            <shadedPattern>dev.drawethree.xprison</shadedPattern>
-                        </relocation>
-                    </relocations>
-                </configuration>
-                <executions>
-                    <execution>
-                        <phase>package</phase>
-                        <goals>
-                            <goal>shade</goal>
-                        </goals>
-                    </execution>
-                </executions>
-            </plugin>
+
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
@@ -47,56 +27,7 @@
                     <release>11</release>
                 </configuration>
             </plugin>
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-shade-plugin</artifactId>
-                <version>3.3.0</version>
-                <executions>
-                    <execution>
-                        <phase>package</phase>
-                        <goals>
-                            <goal>shade</goal>
-                        </goals>
-                        <configuration>
-                            <minimizeJar>true</minimizeJar>
-                            <relocations>
-                                <relocation>
-                                    <pattern>com.zaxxer.hikari</pattern>
-                                    <shadedPattern>${project.groupId}.libs.hikari</shadedPattern>
-                                </relocation>
-                                <relocation>
-                                    <pattern>org.slf4j</pattern>
-                                    <shadedPattern>${project.groupId}.libs.slf4j</shadedPattern>
-                                </relocation>
-                                <relocation>
-                                    <pattern>com.saicone.rtag</pattern>
-                                    <shadedPattern>${project.groupId}.libs.rtag</shadedPattern>
-                                </relocation>
-                                <relocation>
-                                    <pattern>com.cryptomorin.xseries</pattern>
-                                    <shadedPattern>${project.groupId}.libs.xseries</shadedPattern>
-                                </relocation>
-                                <relocation>
-                                    <pattern>org.codemc.worldguardwrapper</pattern>
-                                    <shadedPattern>${project.groupId}.libs.worldguardwrapper</shadedPattern>
-                                </relocation>
-                                <relocation>
-                                    <pattern>org.bstats</pattern>
-                                    <shadedPattern>${project.groupId}.libs.metrics</shadedPattern>
-                                </relocation>
-                                <relocation>
-                                    <pattern>com.github.lalyos.jfiglet</pattern>
-                                    <shadedPattern>${project.groupId}.libs.jfiglet</shadedPattern>
-                                </relocation>
-                                <relocation>
-                                    <pattern>net.objecthunter.exp4j</pattern>
-                                    <shadedPattern>${project.groupId}.libs.exp4j</shadedPattern>
-                                </relocation>
-                            </relocations>
-                        </configuration>
-                    </execution>
-                </executions>
-            </plugin>
+
         </plugins>
         <resources>
             <resource>
@@ -183,12 +114,6 @@
             <groupId>org.codemc.worldguardwrapper</groupId>
             <artifactId>worldguardwrapper</artifactId>
             <version>1.2.0-SNAPSHOT</version>
-        </dependency>
-        <dependency>
-            <groupId>org.bstats</groupId>
-            <artifactId>bstats-bukkit</artifactId>
-            <version>3.0.2</version>
-            <scope>compile</scope>
         </dependency>
         <dependency>
             <groupId>me.clip</groupId>

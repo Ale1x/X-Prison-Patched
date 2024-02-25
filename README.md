@@ -1,11 +1,13 @@
 ![X-Prison Header](https://imgur.com/Hrv0YkI.png)
-# X-Prison
+# X-Prison Reloaded
 ![Issues](https://img.shields.io/github/issues/Drawethree/X-Prison?label=Issues&logo=GitHub)
 ![Discord](https://img.shields.io/discord/716145013276278815?label=Discord&logo=Discord)
 
-**X-Prison** is a an **ultimate solution** for your prison server. This core contains **everything** that should be on each prison server. By including **Prison Mines System**, **20+ Custom Enchants**, **Gangs**, **Auto-Sell**, **Auto-Miner** region, **Pickaxe Levels**, **Tokens & Gems** currencies, **Ranks & Prestiges**, **Multipliers** and a lot of more, its one of the **best prison cores** on the market.
+**X-Prison** is a the **ultimate solution** for your prison server! This core contains **everything** that should be on each prison server. By including **Prison Mines System**, **20+ Custom Enchants**, **Gangs**, **Auto-Sell**, **Auto-Miner** region, **Pickaxe Levels**, **Tokens & Gems** currencies, **Ranks & Prestiges**, **Multipliers** and a lot of more, its one of the **best prison cores** on the market.
 
-As I am no longer actively maintaining this plugin, I have decided to go open-source and I am accepting pull requests!
+Original author is no longer actively maintaining this plugin, I have decided to created a RELOADED version of the plugin and update it to Minecraft 1.20.4
+
+**HOWEVER** you can still, supposedly do pull requests on the original plugin. Seeing as the original author has closed their Discord server from the public etc. I'm not banking on that :P
 
 # Pages
 ### General
