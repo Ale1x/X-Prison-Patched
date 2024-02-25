@@ -12,7 +12,7 @@ messages:
   max_prestige_started: "&e&lPRESTIGE &8» &7Started /maxprestige. This might take a while..."
   max_prestige_done: "&e&lPRESTIGE &8» &7Congratulations, you've max prestiged from &cP%start_prestige% &7to &cP%prestige%&7."
 # Interval in minutes for saving player data into database
-player_data_save_interval: 10
+player_data_save_interval: 5
 # Should we use tokens as a currency for prestiges ?
 use_tokens_currency: false
 # Should we reset player rank after he prestiges ?
