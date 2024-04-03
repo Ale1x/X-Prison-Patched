@@ -73,14 +73,14 @@ public class BlocksRepositoryImpl implements BlocksRepository {
 
     @Override
     public void addIntoBlocks(OfflinePlayer player) {
-        String sql = "INSERT INTO " + TABLE_NAME_BLOCKS + "(UUID, blockCount) VALUES(?,?) ON CONFLICT DO NOTHING";
+        String sql = "INSERT INTO " + TABLE_NAME_BLOCKS + "(UUID, blocks) VALUES(?,?) ON CONFLICT DO NOTHING";
         this.database.executeSql(sql, player.getUniqueId().toString(), 0);
     }
 
 
     @Override
     public void addIntoBlocksWeekly(OfflinePlayer player) {
-        String sql = "INSERT INTO " + TABLE_NAME_BLOCKS_WEEKLY + "(UUID, blockCount) VALUES(?,?) ON CONFLICT DO NOTHING";
+        String sql = "INSERT INTO " + TABLE_NAME_BLOCKS_WEEKLY + "(UUID, blocks) VALUES(?,?) ON CONFLICT DO NOTHING";
         this.database.executeSql(sql, player.getUniqueId().toString(), 0);
     }
 
