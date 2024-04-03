@@ -1,13 +1,13 @@
 name: X-Prison
 version: ${project.version}
-main: dev.drawethree.xprison.XPrison
+main: dev.passarelli.xprison.XPrison
 depend: [ Vault, WorldGuard, WorldEdit, helper ]
 softdepend:
   - PlaceholderAPI
   - MVdWPlaceholderAPI
   - Multiverse-Core
   - UltraBackpacks
-authors: [ WildInterloper, Drawethree ]
+authors: [ WildInterloper, Drawethree, Ale1x ]
 api-version: 1.20
 load: POSTWORLD
-website: www.WildInterloper.com
+website: passarelli.dev
