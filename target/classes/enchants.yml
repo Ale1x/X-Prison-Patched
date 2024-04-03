@@ -4,10 +4,10 @@ messages:
   enchant_max_level_exceed: "&e&l(!) &eThis transaction would exceed the max level for this enchant."
   enchant_min_level_exceed: "&e&l(!) &eThis transaction would exceed the min level for this enchant."
   not_enough_tokens: "&cYou do not have enough tokens!"
-  enchant_bought: "&e&lENCHANT &8» &c&l-%tokens% TOKENS"
-  enchant_bought_multiple: "&e&lENCHANT &8» &7You have bought &f%amount% &7levels of %enchant%&r &7for &f%tokens% &7tokens."
-  enchant_refunded: "&e&lREFUND &8» &7You have refunded &f%amount% &7levels of %enchant%"
-  enchant_tokens_back: "&e&lREFUND &8» &7You have received &f%tokens% &7tokens back."
+  enchant_bought: "&e&lENCHANT &8Â» &c&l-%tokens% TOKENS"
+  enchant_bought_multiple: "&e&lENCHANT &8Â» &7You have bought &f%amount% &7levels of %enchant%&r &7for &f%tokens% &7tokens."
+  enchant_refunded: "&e&lREFUND &8Â» &7You have refunded &f%amount% &7levels of %enchant%"
+  enchant_tokens_back: "&e&lREFUND &8Â» &7You have received &f%tokens% &7tokens back."
   enchant_cant_disenchant: "&c&l(!) &cThis enchant can't be disenchanted."
   enchant_no_level: "&e&l(!) &cYou do not have this enchant!"
   charity_other: "&a&l+ $%amount% &7(From %player%'s Charity)"
@@ -16,20 +16,20 @@ messages:
   blessing_your: "&6&l+ %amount% TOKENS &7(From Your Blessing)"
   layer_disabled: "&e&l(!) &7You've &c&lDISABLED &7layer."
   layer_enabled: "&e&l(!) &7You've &a&lENABLED &7layer."
-  block_booster_on: "&e&lENCHANT &8» &fBlock Booster &7has &Aactivated&7, &FX2 Blocks &7for &a&l5:00"
-  block_booster_off: "&e&lENCHANT &8» &fBlock Booster &7has &cDeactivated&7."
+  block_booster_on: "&e&lENCHANT &8Â» &fBlock Booster &7has &Aactivated&7, &FX2 Blocks &7for &a&l5:00"
+  block_booster_off: "&e&lENCHANT &8Â» &fBlock Booster &7has &cDeactivated&7."
   explosive_disabled: "&e&l(!) &7You've &c&lDISABLED &7explosive."
   explosive_enabled: "&e&l(!) &7You've &a&lENABLED &7explosive."
-  value_no_permission: "&e&lVALUE &8» &7No Permission, Unlock at &fstore.xprison.net&7."
-  value_no_pickaxe: "&e&lVALUE &8» &7You must hold an pickaxe in your hand."
-  value_value: "&e&lVALUE &8» &f%player%'s &7Pickaxe Value: &f%tokens% Tokens&7."
-  value_cooldown: "&e&lVALUE &8» &7Please wait &f%time% Seconds&7 before using this command again."
-  pickaxe_given: "&e&lENCHANT &8» &fYou have given pickaxe to &e%player%"
-  pickaxe_received: "&e&lENCHANT &8» &fYou have received pickaxe from &e%sender%"
-  pickaxe_inventory_full: "&e&lENCHANT &8» &e%player% &chas full inventory!"
-  prestige_finder: "&e&lPRESTIGE FINDER &8» &7You've just found a &fX%prestige% Prestige Level &7while mining."
-  transaction_in_progress: "&e&lENCHANT &8» &cPlease wait for your other transaction to complete."
-  pickaxe_level_required: "&e&lENCHANT &8» &cYou need to have at least &ePickaxe Level %pickaxe_level%&c in order to enchant this!"
+  value_no_permission: "&e&lVALUE &8Â» &7No Permission, Unlock at &fstore.xprison.net&7."
+  value_no_pickaxe: "&e&lVALUE &8Â» &7You must hold an pickaxe in your hand."
+  value_value: "&e&lVALUE &8Â» &f%player%'s &7Pickaxe Value: &f%tokens% Tokens&7."
+  value_cooldown: "&e&lVALUE &8Â» &7Please wait &f%time% Seconds&7 before using this command again."
+  pickaxe_given: "&e&lENCHANT &8Â» &fYou have given pickaxe to &e%player%"
+  pickaxe_received: "&e&lENCHANT &8Â» &fYou have received pickaxe from &e%sender%"
+  pickaxe_inventory_full: "&e&lENCHANT &8Â» &e%player% &chas full inventory!"
+  prestige_finder: "&e&lPRESTIGE FINDER &8Â» &7You've just found a &fX%prestige% Prestige Level &7while mining."
+  transaction_in_progress: "&e&lENCHANT &8Â» &cPlease wait for your other transaction to complete."
+  pickaxe_level_required: "&e&lENCHANT &8Â» &cYou need to have at least &ePickaxe Level %pickaxe_level%&c in order to enchant this!"
 # Should we keep UPC Enchanted pickaxes in players inventory when they die?
 keep-pickaxes-on-death: true
 # Should use unbreakable permission to handle unbreakable pickaxes?
@@ -74,13 +74,13 @@ enchant_menu:
     name: "&6&lHOW IT WORKS?"
     lore:
       - " "
-      - "&6&l* &eLeft-Click &8» &7Buy 1 Level"
+      - "&6&l* &eLeft-Click &8Â» &7Buy 1 Level"
       - " "
-      - "&6&l* &eRight-Click &8» &7Buy 10 Levels"
+      - "&6&l* &eRight-Click &8Â» &7Buy 10 Levels"
       - " "
-      - "&6&l* &eMiddle-Click &8» &7Buy 100 Levels"
+      - "&6&l* &eMiddle-Click &8Â» &7Buy 100 Levels"
       - " "
-      - "&6&l* &ePress Q &8» &7Buy MAX you can afford"
+      - "&6&l* &ePress Q &8Â» &7Buy MAX you can afford"
       - " "
       - "&7&o(( &f&oClick&7&o on the enchant to buy ))"
   # Disenchant item settings
@@ -123,13 +123,13 @@ disenchant_menu:
     name: "&6&lHOW IT WORKS?"
     lore:
       - " "
-      - "&6&l* &eLeft-Click &8» &7-1 Levels"
+      - "&6&l* &eLeft-Click &8Â» &7-1 Levels"
       - " "
-      - "&6&l* &eRight-Click &8» &7-10 Levels"
+      - "&6&l* &eRight-Click &8Â» &7-10 Levels"
       - " "
-      - "&6&l* &eMiddle-Click &8» &7-100 Levels"
+      - "&6&l* &eMiddle-Click &8Â» &7-100 Levels"
       - " "
-      - "&6&l* &e'Q' &8» &7-ALL Levels"
+      - "&6&l* &e'Q' &8Â» &7-ALL Levels"
       - "&7&o(( &f&oClick&7&o on the enchant name to disenchant ))"
 # All available UPC  Enchants settings.
 enchants:
@@ -550,7 +550,7 @@ enchants:
     Remove-Blocks: true
     Count-Blocks-Broken: true
     Use-Events: false
-    Message: "&e&lENCHANT &8» &7You got &2&l$&a%money% &7from &c&lNuke &7activation."
+    Message: "&e&lENCHANT &8Â» &7You got &2&l$&a%money% &7from &c&lNuke &7activation."
     Refund:
       Enabled: true
       InGuiSlot: 47

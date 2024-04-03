@@ -73,15 +73,17 @@ public class BlocksRepositoryImpl implements BlocksRepository {
 
     @Override
     public void addIntoBlocks(OfflinePlayer player) {
-        String sql = database.getDatabaseType() == SQLDatabaseType.SQLITE ? "INSERT OR IGNORE INTO " + TABLE_NAME_BLOCKS + " VALUES(?,?)" : "INSERT IGNORE INTO " + TABLE_NAME_BLOCKS + " VALUES(?,?)";
+        String sql = "INSERT INTO " + TABLE_NAME_BLOCKS + "(UUID, blockCount) VALUES(?,?) ON CONFLICT DO NOTHING";
         this.database.executeSql(sql, player.getUniqueId().toString(), 0);
     }
 
+
     @Override
     public void addIntoBlocksWeekly(OfflinePlayer player) {
-        String sql = database.getDatabaseType() == SQLDatabaseType.SQLITE ? "INSERT OR IGNORE INTO " + TABLE_NAME_BLOCKS_WEEKLY + " VALUES(?,?)" : "INSERT IGNORE INTO " + TABLE_NAME_BLOCKS_WEEKLY + " VALUES(?,?)";
+        String sql = "INSERT INTO " + TABLE_NAME_BLOCKS_WEEKLY + "(UUID, blockCount) VALUES(?,?) ON CONFLICT DO NOTHING";
         this.database.executeSql(sql, player.getUniqueId().toString(), 0);
     }
+
 
     @Override
     public Map<UUID, Long> getTopBlocksWeekly(int amountOfRecords) {

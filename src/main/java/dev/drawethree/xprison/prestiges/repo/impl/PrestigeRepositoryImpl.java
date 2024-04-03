@@ -32,9 +32,10 @@ public class PrestigeRepositoryImpl implements PrestigeRepository {
 
     @Override
     public void addIntoPrestiges(OfflinePlayer player) {
-        String sql = this.database.getDatabaseType() == SQLDatabaseType.SQLITE ? "INSERT OR IGNORE INTO " + TABLE_NAME + "(UUID,id_prestige)  VALUES(?,?)" : "INSERT IGNORE INTO " + TABLE_NAME + "(UUID,id_prestige) VALUES(?,?)";
+        String sql = "INSERT INTO " + TABLE_NAME + "(UUID,id_prestige) VALUES(?,?) ON CONFLICT DO NOTHING";
         this.database.executeSql(sql, player.getUniqueId().toString(), 0);
     }
+
 
     @Override
     public long getPlayerPrestige(OfflinePlayer player) {

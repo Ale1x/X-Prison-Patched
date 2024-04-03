@@ -60,9 +60,10 @@ public class GemsRepositoryImpl implements GemsRepository {
 
 	@Override
 	public void addIntoGems(OfflinePlayer player, long startingGems) {
-		String sql = this.database.getDatabaseType() == SQLDatabaseType.SQLITE ? "INSERT OR IGNORE INTO " + TABLE_NAME + " VALUES(?,?)" : "INSERT IGNORE INTO " + TABLE_NAME + " VALUES(?,?)";
+		String sql = "INSERT INTO " + TABLE_NAME + " VALUES(?,?) ON CONFLICT DO NOTHING";
 		this.database.executeSql(sql, player.getUniqueId().toString(), startingGems);
 	}
+
 
 	@Override
 	public void createTables() {

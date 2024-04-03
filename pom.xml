@@ -26,6 +26,36 @@
                     <release>11</release>
                 </configuration>
             </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-shade-plugin</artifactId>
+                <version>3.2.4</version>
+                <executions>
+                    <execution>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>shade</goal>
+                        </goals>
+                        <configuration>
+                            <filters>
+                                <filter>
+                                    <!-- Include le dipendenze specificate -->
+                                    <artifact>org.codemc.worldguardwrapper:worldguardwrapper</artifact>
+                                    <artifact>org.bstats:bstats</artifact>
+                                    <artifact>org.slf4j:slf4j-api</artifact>
+                                    <artifact>net.objecthunter:exp4j</artifact>
+                                    <artifact>com.cryptomorin.xseries:XSeries</artifact>
+                                    <artifact>com.github.lalyos:jfiglet</artifact>
+                                    <artifact>com.koletar.jj:mineresetlite</artifact>
+                                    <artifact>com.saicone.rtag:rtag</artifact>
+                                    <artifact>com.zaxxer.hikari:HikariCP</artifact>
+                                    <!-- Fine inclusione delle dipendenze -->
+                                </filter>
+                            </filters>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
 
         </plugins>
         <resources>
@@ -81,11 +111,6 @@
             <scope>provided</scope>
         </dependency>
         <dependency>
-            <groupId>org.postgresql</groupId>
-            <artifactId>postgresql</artifactId>
-            <version>42.2.10</version>
-        </dependency>
-        <dependency>
             <groupId>internal</groupId>
             <artifactId>mrl</artifactId>
             <version>LATEST</version>
@@ -108,6 +133,11 @@
             <groupId>com.saicone.rtag</groupId>
             <artifactId>rtag-item</artifactId>
             <version>1.3.2</version>
+        </dependency>
+        <dependency>
+            <groupId>org.postgresql</groupId>
+            <artifactId>postgresql</artifactId>
+            <version>42.7.3</version>
         </dependency>
         <dependency>
             <groupId>com.github.cryptomorin</groupId>
@@ -187,6 +217,12 @@
             <artifactId>lombok</artifactId>
             <version>1.18.30</version>
             <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.junit.vintage</groupId>
+            <artifactId>junit-vintage-engine</artifactId>
+            <version>5.10.2</version>
+            <scope>test</scope>
         </dependency>
     </dependencies>
 

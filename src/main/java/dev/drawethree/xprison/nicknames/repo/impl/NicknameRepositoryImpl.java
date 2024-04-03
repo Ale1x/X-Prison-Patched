@@ -21,10 +21,13 @@ public class NicknameRepositoryImpl implements NicknameRepository {
 	public void updatePlayerNickname(OfflinePlayer player) {
 		if (database.getDatabaseType() == SQLDatabaseType.MYSQL) {
 			this.database.executeSqlAsync("INSERT INTO " + UUID_PLAYERNAME_TABLE_NAME + " VALUES(?,?) ON DUPLICATE KEY UPDATE " + UUID_PLAYERNAME_NICK_COLNAME + "=?", player.getUniqueId().toString(), player.getName(), player.getName());
+		} else if (database.getDatabaseType() == SQLDatabaseType.POSTGRESQL) {
+			this.database.executeSqlAsync("INSERT INTO " + UUID_PLAYERNAME_TABLE_NAME + " (uuid, nickname) VALUES (?, ?) ON CONFLICT (uuid) DO UPDATE SET " + UUID_PLAYERNAME_NICK_COLNAME + " = EXCLUDED." + UUID_PLAYERNAME_NICK_COLNAME, player.getUniqueId().toString(), player.getName());
 		} else {
 			this.database.executeSqlAsync("INSERT OR REPLACE INTO " + UUID_PLAYERNAME_TABLE_NAME + " VALUES(?,?)", player.getUniqueId().toString(), player.getName());
 		}
 	}
+
 
 
 	@Override

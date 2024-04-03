@@ -44,9 +44,10 @@ public class RanksRepositoryImpl implements RanksRepository {
 
 	@Override
 	public void addIntoRanks(OfflinePlayer player) {
-		String sql = database.getDatabaseType() == SQLDatabaseType.SQLITE ? "INSERT OR IGNORE INTO " + TABLE_NAME + "(UUID,id_rank) VALUES(?,?)" : "INSERT IGNORE INTO " + TABLE_NAME + "(UUID,id_rank) VALUES(?,?)";
+		String sql = "INSERT INTO " + TABLE_NAME + "(UUID, id_rank) VALUES(?, ?) ON CONFLICT DO NOTHING";
 		this.database.executeSql(sql, player.getUniqueId().toString(), 0);
 	}
+
 
 	@Override
 	public void createTables() {

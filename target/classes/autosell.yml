@@ -17,9 +17,9 @@ auto_sell_broadcast:
   time: 60
   message:
     - "&e&m-------&f&m-------&e&m--------&f&m--------&e&m--------&f&m-------&e&m-------"
-    - " &8&l� &6&lAUTOSELL:"
-    - " &8&l? &e&lMONEY MADE: &2$&a%money%"
-    - " &8&l? &e&lITEMS SOLD: &f%items%"
+    - " &8&l» &6&lAUTOSELL:"
+    - " &8&l➥ &e&lMONEY MADE: &2$&a%money%"
+    - " &8&l➥ &e&lITEMS SOLD: &f%items%"
     - "&e&m-------&f&m-------&e&m--------&f&m--------&e&m--------&f&m-------&e&m-------"
 # Sellprices for each regions
 regions: { }

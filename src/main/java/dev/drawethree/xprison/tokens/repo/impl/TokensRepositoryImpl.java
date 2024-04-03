@@ -61,9 +61,15 @@ public class TokensRepositoryImpl implements TokensRepository {
 
     @Override
     public void addIntoTokens(OfflinePlayer player, long startingTokens) {
-        String sql = database.getDatabaseType() == SQLDatabaseType.SQLITE ? "INSERT OR IGNORE INTO " + TABLE_NAME_TOKENS + " VALUES(?,?)" : "INSERT IGNORE INTO " + TABLE_NAME_TOKENS + " VALUES(?,?)";
-        this.database.executeSql(sql, player.getUniqueId().toString(), startingTokens);
+        String sql = "INSERT INTO " + TABLE_NAME_TOKENS + " (UUID, tokens) VALUES(?, ?)";
+        if (database.getDatabaseType() == SQLDatabaseType.SQLITE) {
+            sql += " ON CONFLICT(UUID) DO NOTHING";
+        } else {
+            sql += " ON CONFLICT(UUID) DO UPDATE SET tokens = ?";
+        }
+        this.database.executeSql(sql, player.getUniqueId().toString(), startingTokens, startingTokens);
     }
+
 
     @Override
     public void createTables() {

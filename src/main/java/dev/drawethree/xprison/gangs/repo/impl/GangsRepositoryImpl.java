@@ -94,9 +94,10 @@ public class GangsRepositoryImpl implements GangsRepository {
 
 	@Override
 	public void createGang(Gang g) {
-		String sql = database.getDatabaseType() == SQLDatabaseType.SQLITE ? "INSERT OR IGNORE INTO " + TABLE_NAME + "(UUID,name,owner,members) VALUES(?,?,?,?)" : "INSERT IGNORE INTO " + TABLE_NAME + "(UUID,name,owner,members) VALUES(?,?,?,?)";
+		String sql = "INSERT INTO " + TABLE_NAME + "(UUID,name,owner,members) VALUES(?,?,?,?) ON CONFLICT DO NOTHING";
 		this.database.executeSqlAsync(sql, g.getUuid().toString(), g.getName(), g.getGangOwner().toString(), "");
 	}
+
 
 	@Override
 	public void createGangInvitation(GangInvitation gangInvitation) {
@@ -167,7 +168,7 @@ public class GangsRepositoryImpl implements GangsRepository {
 	@Override
 	public void createTables() {
 		this.database.executeSql("CREATE TABLE IF NOT EXISTS " + TABLE_NAME + "(UUID varchar(36) NOT NULL UNIQUE, name varchar(36) NOT NULL UNIQUE, owner varchar(36) NOT NULL, value bigint default 0, members text, primary key (UUID,name))");
-		this.database.executeSql("CREATE TABLE IF NOT EXISTS " + INVITES_TABLE_NAME + "(uuid varchar(36) NOT NULL, gang_id varchar(36) NOT NULL, invited_by varchar(36), invited_player varchar(36) not null, invite_date datetime not null, primary key(uuid))");
+		this.database.executeSql("CREATE TABLE IF NOT EXISTS " + INVITES_TABLE_NAME + "(uuid varchar(36) NOT NULL, gang_id varchar(36) NOT NULL, invited_by varchar(36), invited_player varchar(36) not null, invite_date TIMESTAMP not null, primary key(uuid))");
 	}
 
 	@Override
