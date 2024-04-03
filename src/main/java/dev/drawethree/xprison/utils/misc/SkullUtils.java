@@ -5,17 +5,25 @@ import com.mojang.authlib.properties.Property;
 import dev.drawethree.xprison.utils.compat.CompMaterial;
 import dev.drawethree.xprison.utils.compat.MinecraftVersion;
 import dev.drawethree.xprison.utils.item.ItemStackBuilder;
+import org.bukkit.Bukkit;
+import org.bukkit.Material;
 import org.bukkit.OfflinePlayer;
+import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.SkullMeta;
+import org.bukkit.profile.PlayerProfile;
+import org.bukkit.profile.PlayerTextures;
 
 import java.lang.reflect.Field;
+import java.net.MalformedURLException;
+import java.net.URL;
+import java.util.Base64;
 import java.util.List;
 import java.util.UUID;
 
 public class SkullUtils {
 
-	public static final ItemStack HELP_SKULL = getCustomTextureHead("eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvN2YzY2E0ZjdjOTJkZGUzYTc3ZWM1MTBhNzRiYThjMmU4ZDBlYzdiODBmMGUzNDhjYzZkZGRkNmI0NThiZCJ9fX0=");
+	public static final ItemStack HELP_SKULL = getCustomTextureHead("eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvN2YzY2E0ZjdjOTJkZGUzYTc3ZWM1MTBhNzRiYThjMmU4ZDBlYzdiODBmMGUzNDhjYzZkZGRkNmI0NThiZCJ9fX0");
 	public static final ItemStack DIAMOND_R_SKULL = getCustomTextureHead("eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvYzkzZWQ4MDdkYmYxNDdjNWVmOWI4ZWM0NmQzZmE2ZTJkN2IyZGJkMzQzMWEyMzQxN2MxMzU0YmI4NjNjNCJ9fX0=");
 	public static final ItemStack DIAMOND_P_SKULL = getCustomTextureHead("eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvNWIxZTQyNzY3MDkwODI4OTcwYTliNDMyNzYyMDYyZmY2ZGY0Y2JjMjMxMWRlMjNhMWJiNDI1M2VjYjE2OTJjIn19fQ==");
 	public static final ItemStack MONEY_SKULL = getCustomTextureHead("eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvZTM2ZTk0ZjZjMzRhMzU0NjVmY2U0YTkwZjJlMjU5NzYzODllYjk3MDlhMTIyNzM1NzRmZjcwZmQ0ZGFhNjg1MiJ9fX0=");
@@ -32,30 +40,37 @@ public class SkullUtils {
 		//nothing here, just to make sure the class gets loaded on start.
 	}
 
+	private static PlayerProfile getProfile(String url) {
+		PlayerProfile profile = Bukkit.createPlayerProfile("92864445-51c5-4c3b-9039-517c9927d1b4"	); // Random UUID
+		PlayerTextures textures = profile.getTextures();
+		URL urlObject;
+		try {
+			urlObject = new URL(url);
+		} catch (MalformedURLException exception) {
+			throw new RuntimeException("Invalid URL", exception);
+		}
+		textures.setSkin(urlObject);
+		profile.setTextures(textures);
+		return profile;
+	}
+
+	public static String getUrlFromBase64(String base64) {
+		String decoded = new String(Base64.getDecoder().decode(base64));
+		return new String(decoded.substring("{\"textures\":{\"SKIN\":{\"url\":\"".length(), decoded.length() - "\"}}}".length()));
+	}
+
 	public static ItemStack getCustomTextureHead(String value) {
+
+		String parsedHeadLink = getUrlFromBase64(value);
+		PlayerProfile profile = getProfile(parsedHeadLink);
+
 		ItemStack head = CompMaterial.PLAYER_HEAD.toItem();
-
 		SkullMeta meta = (SkullMeta) head.getItemMeta();
-
-		GameProfile profile;
-		try {
-			profile = new GameProfile(UUID.randomUUID(), null);
-		}
-		catch (Throwable t) {
-			profile = new GameProfile(UUID.randomUUID(), "X-Prison");
-		}
-
-		profile.getProperties().put("textures", new Property("textures", value));
-		Field profileField;
-		try {
-			profileField = meta.getClass().getDeclaredField("profile");
-			profileField.setAccessible(true);
-			profileField.set(meta, profile);
-		} catch (IllegalArgumentException | IllegalAccessException | NoSuchFieldException | SecurityException e) {
-			e.printStackTrace();
-		}
+		meta.setOwnerProfile(profile);
 		head.setItemMeta(meta);
+
 		return head;
+
 	}
 
 
