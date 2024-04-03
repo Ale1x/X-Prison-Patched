@@ -6,6 +6,7 @@ import dev.drawethree.xprison.autosell.XPrisonAutoSell;
 import dev.drawethree.xprison.config.FileManager;
 import dev.drawethree.xprison.database.SQLDatabase;
 import dev.drawethree.xprison.database.impl.MySQLDatabase;
+import dev.drawethree.xprison.database.impl.PostgreSQLDatabase;
 import dev.drawethree.xprison.database.impl.SQLiteDatabase;
 import dev.drawethree.xprison.database.model.ConnectionProperties;
 import dev.drawethree.xprison.database.model.DatabaseCredentials;
@@ -219,13 +220,17 @@ public final class XPrison extends ExtendedJavaPlugin {
 
 			if ("sqlite".equalsIgnoreCase(databaseType)) {
 				this.pluginDatabase = new SQLiteDatabase(this, connectionProperties);
-				this.getLogger().info("Using SQLite (local) database.");
+				this.getLogger().info("Using SQLite database.");
 			} else if ("mysql".equalsIgnoreCase(databaseType)) {
 				DatabaseCredentials credentials = DatabaseCredentials.fromConfig(this.getConfig());
 				this.pluginDatabase = new MySQLDatabase(this, credentials, connectionProperties);
-				this.getLogger().info("Using MySQL (remote) database.");
+				this.getLogger().info("Using MySQL database.");
+			} else if("postgresql".equalsIgnoreCase(databaseType)) {
+				DatabaseCredentials credentials = DatabaseCredentials.fromConfig(this.getConfig());
+				this.pluginDatabase = new PostgreSQLDatabase(this, credentials, connectionProperties);
+				this.getLogger().info("Using PostgreSQL database.");
 			} else {
-				this.getLogger().warning(String.format("Error! Unknown database type: %s. Disabling plugin.", databaseType));
+				this.getLogger().warning(String.format("Database invalido: %s", databaseType));
 				this.getServer().getPluginManager().disablePlugin(this);
 				return false;
 			}

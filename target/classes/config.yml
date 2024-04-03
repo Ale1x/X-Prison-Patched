@@ -1,9 +1,15 @@
 # Should plugin show debug messages?
 debug-mode: false
-# Database type (SQLite, MySQL)
-database_type: SQLite
+# Database type (SQLite, MySQL, PostgreSQL)
+database_type: PostgreSQL
 # MySQL connection details
 mysql:
+  host: localhost
+  port: 3306
+  database: dbName
+  username: dbUser
+  password: dbPass
+postgresql:
   host: localhost
   port: 3306
   database: dbName

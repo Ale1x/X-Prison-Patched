@@ -14,7 +14,15 @@ public class DatabaseCredentials {
 
 	public static DatabaseCredentials fromConfig(FileConfiguration config) {
 
-		String rootPath = "mysql.";
+		String databaseType = config.getString("database_type");
+
+		String rootPath = "";
+
+		if(databaseType.equals("MySQL")) {
+			rootPath = "mysql.";
+		} else {
+			rootPath = "postgresql.";
+		}
 
 		String host = config.getString(rootPath + "host");
 		String dbName = config.getString(rootPath + "database");
