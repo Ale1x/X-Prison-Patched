@@ -58,6 +58,14 @@ public class AutominerRepositoryImpl implements AutominerRepository {
 			} catch (SQLException e) {
 				e.printStackTrace();
 			}
+		} else if (database.getDatabaseType() == SQLDatabaseType.POSTGRESQL) {
+			try (Connection con = this.database.getConnection(); PreparedStatement statement = database.prepareStatement(con, "INSERT INTO " + TABLE_NAME + " (uuid, time) VALUES (?, ?) ON CONFLICT (uuid) DO UPDATE SET " + AUTOMINER_TIME_COLNAME + " = EXCLUDED." + AUTOMINER_TIME_COLNAME)) {
+				statement.setString(1, p.getUniqueId().toString());
+				statement.setInt(2, timeLeft);
+				statement.execute();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
 		} else {
 			try (Connection con = this.database.getConnection(); PreparedStatement statement = database.prepareStatement(con, "INSERT OR REPLACE INTO " + TABLE_NAME + " VALUES(?,?)")) {
 				statement.setString(1, p.getUniqueId().toString());
