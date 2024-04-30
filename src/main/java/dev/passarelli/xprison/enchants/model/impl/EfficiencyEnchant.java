@@ -16,7 +16,7 @@ public final class EfficiencyEnchant extends XPrisonEnchantment {
 	@Override
 	public void onEquip(Player p, ItemStack pickAxe, int level) {
 		ItemMeta meta = pickAxe.getItemMeta();
-		meta.addEnchant(Enchantment.DIG_SPEED, level, true);
+		meta.addEnchant(Enchantment.EFFICIENCY, level, true);
 		pickAxe.setItemMeta(meta);
 	}
 

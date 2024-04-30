@@ -20,12 +20,12 @@ public final class HasteEnchant extends XPrisonEnchantment {
 			this.onUnequip(p, pickAxe, level);
 			return;
 		}
-		p.addPotionEffect(new PotionEffect(PotionEffectType.FAST_DIGGING, Integer.MAX_VALUE, level - 1, true, true), true);
+		p.addPotionEffect(new PotionEffect(PotionEffectType.HASTE, Integer.MAX_VALUE, level - 1, true, true), true);
 	}
 
 	@Override
 	public void onUnequip(Player p, ItemStack pickAxe, int level) {
-		p.removePotionEffect(PotionEffectType.FAST_DIGGING);
+		p.removePotionEffect(PotionEffectType.HASTE);
 	}
 
 	@Override

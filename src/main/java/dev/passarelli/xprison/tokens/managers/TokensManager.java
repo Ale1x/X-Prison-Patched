@@ -296,7 +296,7 @@ public class TokensManager {
 				.amount(value)
 				.name(this.plugin.getTokensConfig().getTokenItemDisplayName().replace("%amount%", String.format("%,d", amount)).replace("%tokens%", String.format("%,d", amount)))
 				.lore(this.plugin.getTokensConfig().getTokenItemLore())
-				.enchant(Enchantment.PROTECTION_ENVIRONMENTAL)
+				.enchant(Enchantment.PROTECTION)
 				.flag(ItemFlag.HIDE_ENCHANTS)
 				.build();
 		final PrisonItem prisonItem = new PrisonItem(item);

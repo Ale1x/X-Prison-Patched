@@ -19,12 +19,12 @@ public final class JumpBoostEnchant extends XPrisonEnchantment {
 			this.onUnequip(p, pickAxe, level);
 			return;
 		}
-		p.addPotionEffect(new PotionEffect(PotionEffectType.JUMP, Integer.MAX_VALUE, level - 1, true, true), true);
+		p.addPotionEffect(new PotionEffect(PotionEffectType.JUMP_BOOST, Integer.MAX_VALUE, level - 1, true, true), true);
 	}
 
 	@Override
 	public void onUnequip(Player p, ItemStack pickAxe, int level) {
-		p.removePotionEffect(PotionEffectType.JUMP);
+		p.removePotionEffect(PotionEffectType.JUMP_BOOST);
 	}
 
 	@Override

@@ -1,4 +1,4 @@
 -------------------------------------------------------------------------------
 Test set: dev.passarelli.xprison.utils.LocationUtilsTest
 -------------------------------------------------------------------------------
-Tests run: 2, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 1.429 s -- in dev.passarelli.xprison.utils.LocationUtilsTest
+Tests run: 2, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 1.361 s -- in dev.passarelli.xprison.utils.LocationUtilsTest

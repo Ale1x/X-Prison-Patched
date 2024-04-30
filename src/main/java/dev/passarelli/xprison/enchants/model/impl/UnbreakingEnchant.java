@@ -17,7 +17,7 @@ public final class UnbreakingEnchant extends XPrisonEnchantment {
 	@Override
 	public void onEquip(Player p, ItemStack pickAxe, int level) {
 		ItemMeta meta = pickAxe.getItemMeta();
-		meta.addEnchant(Enchantment.DURABILITY, level, true);
+		meta.addEnchant(Enchantment.UNBREAKING, level, true);
 		pickAxe.setItemMeta(meta);
 	}
 

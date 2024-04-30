@@ -26,7 +26,7 @@ public final class FortuneEnchant extends XPrisonEnchantment {
     @Override
     public void onEquip(Player p, ItemStack pickAxe, int level) {
         ItemMeta meta = pickAxe.getItemMeta();
-        meta.removeEnchant(Enchantment.LOOT_BONUS_BLOCKS);
+        meta.removeEnchant(Enchantment.FORTUNE);
         pickAxe.setItemMeta(meta);
     }
 

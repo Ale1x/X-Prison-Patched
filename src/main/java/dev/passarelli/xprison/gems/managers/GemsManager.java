@@ -315,7 +315,7 @@ public class GemsManager {
 	}
 
 	private ItemStack createGemsItem(long amount, int value) {
-		ItemStack item = ItemStackBuilder.of(this.gemsItem.clone()).amount(value).name(this.gemsItemDisplayName.replace("%amount%", String.format("%,d", amount)).replace("%tokens%", String.format("%,d", amount))).lore(this.gemsItemLore).enchant(Enchantment.PROTECTION_ENVIRONMENTAL).flag(ItemFlag.HIDE_ENCHANTS).build();
+		ItemStack item = ItemStackBuilder.of(this.gemsItem.clone()).amount(value).name(this.gemsItemDisplayName.replace("%amount%", String.format("%,d", amount)).replace("%tokens%", String.format("%,d", amount))).lore(this.gemsItemLore).enchant(Enchantment.PROTECTION).flag(ItemFlag.HIDE_ENCHANTS).build();
 		final PrisonItem prisonItem = new PrisonItem(item);
 		prisonItem.setGems(amount);
 		prisonItem.load();
