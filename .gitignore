@@ -3,4 +3,4 @@ dependency-reduced-pom.xml
 .idea
 .circleci
 *.iml
-target/
+/target/
