@@ -24,7 +24,7 @@ public class SkullUtils {
 	public static final ItemStack MONEY_SKULL = getCustomTextureHead("eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvZTM2ZTk0ZjZjMzRhMzU0NjVmY2U0YTkwZjJlMjU5NzYzODllYjk3MDlhMTIyNzM1NzRmZjcwZmQ0ZGFhNjg1MiJ9fX0=");
 	public static final ItemStack COIN_SKULL = getCustomTextureHead("eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvYjBhN2I5NGM0ZTU4MWI2OTkxNTlkNDg4NDZlYzA5MTM5MjUwNjIzN2M4OWE5N2M5MzI0OGEwZDhhYmM5MTZkNSJ9fX0=");
 	public static final ItemStack GANG_SKULL = getCustomTextureHead("eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvZTM3ZjlkYjZlZWNlNDliMmMxZDZkOWVmOTRmNmMxMTQ4OTA0MTIwMjkxMzY1YTE3ZDI3MGY5OGY2MmFlZGUifX19");
-	public static final ItemStack INFO_SKULL = getCustomTextureHead("eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvMTY0MzlkMmUzMDZiMjI1NTE2YWE5YTZkMDA3YTdlNzVlZGQyZDUwMTTkMTEzYjQyZjQ0YmU2MmE1MTdlNTc0ZiJ9fX0");
+	public static final ItemStack INFO_SKULL = getCustomTextureHead("eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvMTY0MzlkMmUzMDZiMjI1NTE2YWE5YTZkMDA3YTdlNzVlZGQyZDUwMTVkMTEzYjQyZjQ0YmU2MmE1MTdlNTc0ZiJ9fX0");
 	public static final ItemStack COMMAND_BLOCK_SKULL = getCustomTextureHead("eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvMWNiYTcyNzdmYzg5NWJmM2I2NzM2OTQxNTk4NjRiODMzNTFhNGQxNDcxN2U0NzZlYmRhMWMzYmYzOGZjZjM3In19fQ==");
 	public static final ItemStack CHECK_SKULL = getCustomTextureHead("eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvY2UyYTUzMGY0MjcyNmZhN2EzMWVmYWI4ZTQzZGFkZWUxODg5MzdjZjgyNGFmODhlYThlNGM5M2E0OWM1NzI5NCJ9fX0=");
 	public static final ItemStack CROSS_SKULL = getCustomTextureHead("eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvZTljZGI5YWYzOGNmNDFkYWE1M2JjOGNkYTc2NjVjNTA5NjMyZDE0ZTY3OGYwZjE5ZjI2M2Y0NmU1NDFkOGEzMCJ9fX0=");
@@ -36,20 +36,21 @@ public class SkullUtils {
 	}
 
 	private static PlayerProfile getProfile(String url) {
-		UUID id = UUID.nameUUIDFromBytes(url.getBytes());
 
-		String truncatedName = "CustomSkull" + id.toString().substring(0, 7);
+		UUID randomUUID = UUID.randomUUID();
 
-		PlayerProfile profile = Bukkit.createPlayerProfile(id, truncatedName);
+		String randomName = randomUUID.toString().substring(0, 16);
 
+		PlayerProfile profile = Bukkit.createPlayerProfile(randomUUID, randomName);
+		PlayerTextures textures = profile.getTextures();
+		URL urlObject;
 		try {
-			PlayerTextures textures = profile.getTextures();
-			textures.setSkin(new URL(url));
-			profile.setTextures(textures);
-		} catch (MalformedURLException e) {
-			e.printStackTrace();
+			urlObject = new URL(url);
+		} catch (MalformedURLException exception) {
+			throw new RuntimeException("URL non valido", exception);
 		}
-
+		textures.setSkin(urlObject);
+		profile.setTextures(textures);
 		return profile;
 	}
 
@@ -59,6 +60,7 @@ public class SkullUtils {
 	}
 
 	public static ItemStack getCustomTextureHead(String value) {
+
 		String parsedHeadLink = getUrlFromBase64(value);
 		PlayerProfile profile = getProfile(parsedHeadLink);
 
@@ -68,6 +70,7 @@ public class SkullUtils {
 		head.setItemMeta(meta);
 
 		return head;
+
 	}
 
 

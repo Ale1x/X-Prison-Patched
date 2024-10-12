@@ -1,7 +1,6 @@
 package dev.passarelli.xprison.tokens.repo.impl;
 
 import dev.passarelli.xprison.database.SQLDatabase;
-import dev.passarelli.xprison.database.model.SQLDatabaseType;
 import dev.passarelli.xprison.tokens.repo.TokensRepository;
 import org.bukkit.OfflinePlayer;
 
@@ -61,13 +60,29 @@ public class TokensRepositoryImpl implements TokensRepository {
 
     @Override
     public void addIntoTokens(OfflinePlayer player, long startingTokens) {
-        String sql = "INSERT INTO " + TABLE_NAME_TOKENS + " (UUID, tokens) VALUES(?, ?)";
-        if (database.getDatabaseType() == SQLDatabaseType.SQLITE) {
-            sql += " ON CONFLICT(UUID) DO NOTHING";
-        } else {
-            sql += " ON CONFLICT(UUID) DO UPDATE SET tokens = ?";
+        String sql;
+        Object[] params = switch (database.getDatabaseType()) {
+            case SQLITE -> {
+                sql = "INSERT OR REPLACE INTO " + TABLE_NAME_TOKENS + " (" + TOKENS_UUID_COLNAME + ", " + TOKENS_TOKENS_COLNAME + ") VALUES (?, ?)";
+                yield new Object[]{player.getUniqueId().toString(), startingTokens};
+            }
+            case MYSQL -> {
+                sql = "INSERT INTO " + TABLE_NAME_TOKENS + " (" + TOKENS_UUID_COLNAME + ", " + TOKENS_TOKENS_COLNAME + ") VALUES (?, ?) ON DUPLICATE KEY UPDATE " + TOKENS_TOKENS_COLNAME + " = ?";
+                yield new Object[]{player.getUniqueId().toString(), startingTokens, startingTokens};
+            }
+            case POSTGRESQL -> {
+                sql = "INSERT INTO " + TABLE_NAME_TOKENS + " (" + TOKENS_UUID_COLNAME + ", " + TOKENS_TOKENS_COLNAME + ") VALUES (?, ?) ON CONFLICT (" + TOKENS_UUID_COLNAME + ") DO UPDATE SET " + TOKENS_TOKENS_COLNAME + " = ?";
+                yield new Object[]{player.getUniqueId().toString(), startingTokens, startingTokens};
+            }
+            default ->
+                    throw new IllegalStateException("Tipo di database non supportato: " + database.getDatabaseType());
+        };
+
+        try {
+            this.database.executeSql(sql, params);
+        } catch (Exception e) {
+            e.printStackTrace();
         }
-        this.database.executeSql(sql, player.getUniqueId().toString(), startingTokens, startingTokens);
     }
 
 
